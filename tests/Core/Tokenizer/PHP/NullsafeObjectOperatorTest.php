@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests the backfill for the PHP >= 8.0 nullsafe object operator.

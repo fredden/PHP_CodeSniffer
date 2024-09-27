@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests the conversion of bitwise or tokens to type union tokens.

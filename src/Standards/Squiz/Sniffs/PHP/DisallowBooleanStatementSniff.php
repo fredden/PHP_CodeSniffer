@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Ensures that boolean operators are only used inside control structure conditions.

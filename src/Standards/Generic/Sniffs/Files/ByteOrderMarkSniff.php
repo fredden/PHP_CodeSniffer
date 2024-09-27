@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * A simple sniff for detecting a BOM definition that may corrupt application work.

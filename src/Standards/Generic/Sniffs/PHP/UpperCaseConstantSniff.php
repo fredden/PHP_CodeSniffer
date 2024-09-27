@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Checks that all uses of TRUE, FALSE and NULL are uppercase.

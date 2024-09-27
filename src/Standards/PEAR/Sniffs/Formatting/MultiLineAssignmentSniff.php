@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * If an assignment goes over two lines, ensure the equal sign is indented.

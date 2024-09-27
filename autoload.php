@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Autoloads files for PHP_CodeSniffer and tracks what has been loaded.

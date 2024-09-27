@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Checks for usage of $this in static methods, which will cause runtime errors.

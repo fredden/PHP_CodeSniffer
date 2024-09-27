@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests the scope opener/closers are set correctly when the namespace keyword is used as an operator.

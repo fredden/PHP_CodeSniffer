@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Verifies that a @throws tag exists for each exception type a function throws.

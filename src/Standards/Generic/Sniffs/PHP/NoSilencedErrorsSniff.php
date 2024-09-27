@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Throws an error or warning when any code prefixed with an asperand is encountered.

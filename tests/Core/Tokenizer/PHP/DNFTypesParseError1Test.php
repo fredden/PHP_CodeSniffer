@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests that parentheses tokens are not converted to type parentheses tokens in broken DNF types.

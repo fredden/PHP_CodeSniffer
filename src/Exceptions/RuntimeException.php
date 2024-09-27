@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * An exception thrown by PHP_CodeSniffer when it encounters an unrecoverable error.

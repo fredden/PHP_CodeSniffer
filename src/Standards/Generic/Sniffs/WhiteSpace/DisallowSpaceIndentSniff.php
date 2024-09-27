@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Throws errors if spaces are used for indentation other than precision indentation.

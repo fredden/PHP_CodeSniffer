@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Ensures the PHP_SAPI constant is used instead of php_sapi_name().

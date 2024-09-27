@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Represents a PHP_CodeSniffer sniff for sniffing coding standards.

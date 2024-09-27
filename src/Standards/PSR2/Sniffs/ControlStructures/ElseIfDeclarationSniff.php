@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Verifies that there are no else if statements (elseif should be used instead).

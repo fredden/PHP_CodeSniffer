@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * An interface that PHP_CodeSniffer reports must implement.

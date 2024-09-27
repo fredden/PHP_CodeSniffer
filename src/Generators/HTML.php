@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * A doc generator that outputs documentation in one big HTML file.

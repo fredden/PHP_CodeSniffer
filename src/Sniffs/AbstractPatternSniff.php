@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Processes pattern strings and checks that the code conforms to the pattern.

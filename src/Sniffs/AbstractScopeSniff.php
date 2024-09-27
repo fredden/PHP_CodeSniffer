@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Allows tests that extend this class to listen for tokens within a particular scope.

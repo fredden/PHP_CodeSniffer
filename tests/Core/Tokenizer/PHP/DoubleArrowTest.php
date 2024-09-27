@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests the retokenization of the double arrow to T_MATCH_ARROW for PHP 8.0 match structures

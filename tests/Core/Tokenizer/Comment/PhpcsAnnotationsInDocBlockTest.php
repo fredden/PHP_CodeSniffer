@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests that PHPCS native annotations in docblocks are tokenized correctly.

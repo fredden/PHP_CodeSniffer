@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Ensure include_once is used in conditional situations and require_once is used elsewhere.

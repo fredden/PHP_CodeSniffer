@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests the conversion of PHPCS native context sensitive keyword tokens to T_STRING.

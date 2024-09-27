@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests the backfilling of the parameter labels for PHP 8.0 named parameters in function calls.

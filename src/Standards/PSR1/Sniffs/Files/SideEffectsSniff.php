@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Ensures a file declares new symbols and causes no other side effects, or executes logic with side effects, but not both.

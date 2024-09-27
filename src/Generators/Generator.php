@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * The base class for all PHP_CodeSniffer documentation generators.

@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * A testable implementation of \PHP_CodeSniffer\Sniffs\AbstractArraySniff.

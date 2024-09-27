@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests the backfilling of the T_MATCH token to PHP < 8.0, as well as the

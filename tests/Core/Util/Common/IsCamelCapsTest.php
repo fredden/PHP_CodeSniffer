@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests for the \PHP_CodeSniffer\Util\Common::isCamelCaps method.

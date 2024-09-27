@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Checks that the opening brace of a class/interface/trait is on the same line as the class declaration.

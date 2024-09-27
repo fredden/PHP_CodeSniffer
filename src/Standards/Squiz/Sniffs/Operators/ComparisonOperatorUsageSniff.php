@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * A Sniff to enforce the use of IDENTICAL type operators rather than EQUAL operators.

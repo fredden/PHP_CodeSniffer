@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Ensures there is only one assignment on a line, and that it is the first thing on the line.

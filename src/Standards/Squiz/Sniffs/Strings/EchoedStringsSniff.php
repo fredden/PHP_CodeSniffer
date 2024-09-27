@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Makes sure that any strings that are "echoed" are not enclosed in brackets.

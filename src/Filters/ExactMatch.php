@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * An abstract filter class for checking files and folders against exact matches.

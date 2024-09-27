@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Check & fix whitespace on the inside of arbitrary parentheses.

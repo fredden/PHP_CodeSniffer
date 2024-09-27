@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Bans the use of some styles, such as deprecated or browser-specific styles.

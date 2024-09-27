@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests the adding of the "parenthesis" keys to an anonymous class token.

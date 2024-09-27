@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * A filter to only include files that have been staged for commit in a Git repository.

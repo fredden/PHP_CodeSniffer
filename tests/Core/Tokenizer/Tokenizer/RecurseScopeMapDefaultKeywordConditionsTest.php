@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Tests the retokenization of the `default` keyword to T_MATCH_DEFAULT for PHP 8.0 match structures

@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Forbid mixing different binary boolean operators within a single expression without making precedence

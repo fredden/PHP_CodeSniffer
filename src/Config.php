@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Stores the configuration used to run PHPCS and PHPCBF.

@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Runs the Zend Code Analyzer (from Zend Studio) on the file.

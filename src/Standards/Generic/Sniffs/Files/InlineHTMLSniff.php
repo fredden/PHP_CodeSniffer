@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * Ensures the whole file is PHP only, with no whitespace or inline HTML.

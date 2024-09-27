@@ -1,3 +1,4 @@
+<?php declare( strict_types = 1 ); ?>
 <?php
 /**
  * A dummy file represents a chunk of text that does not have a file system location.
