@@ -97,7 +97,7 @@ class Filter extends RecursiveFilterIterator
     #[ReturnTypeWillChange]
     public function accept()
     {
-        $filePath = $this->current();
+        $filePath = (string) $this->current();
         $realPath = Common::realpath($filePath);
 
         if ($realPath !== false) {
@@ -109,7 +109,6 @@ class Filter extends RecursiveFilterIterator
             }
         }
 
-        $filePath = $this->current();
         if (is_dir($filePath) === true) {
             if ($this->config->local === true) {
                 return false;
@@ -141,7 +140,7 @@ class Filter extends RecursiveFilterIterator
     {
         $filterClass = get_called_class();
         $children    = new $filterClass(
-            new RecursiveDirectoryIterator($this->current(), (RecursiveDirectoryIterator::SKIP_DOTS | FilesystemIterator::FOLLOW_SYMLINKS)),
+            new RecursiveDirectoryIterator((string) $this->current(), (RecursiveDirectoryIterator::SKIP_DOTS | FilesystemIterator::FOLLOW_SYMLINKS)),
             $this->basedir,
             $this->config,
             $this->ruleset

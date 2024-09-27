@@ -90,6 +90,9 @@ class Common
      */
     public static function realpath($path)
     {
+        // TODO: add protection here against passing in non-strings.
+        $path = (string) $path;
+
         // Support the path replacement of ~ with the user's home directory.
         if (substr($path, 0, 2) === '~/') {
             $homeDir = getenv('HOME');

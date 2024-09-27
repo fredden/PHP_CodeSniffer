@@ -177,7 +177,7 @@ class Full implements Report
                     }//end if
 
                     // The padding that goes on the front of the line.
-                    $padding = ($maxLineNumLength - strlen($line));
+                    $padding = ($maxLineNumLength - strlen((string) $line));
 
                     echo ' '.str_repeat(' ', $padding).$line.' | ';
                     if ($error['type'] === 'ERROR') {
