@@ -71,6 +71,7 @@
     <rule ref="PSR2.Files.EndFileNewline"/>
     <rule ref="PSR12.Files.OpenTag"/>
     <rule ref="Zend.Files.ClosingTag"/>
+    <rule ref="Generic.PHP.RequireStrictTypes"/>
 
     <!-- We use custom indent rules for arrays -->
     <rule ref="Generic.Arrays.ArrayIndent"/>
