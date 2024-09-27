@@ -571,7 +571,7 @@ class Ruleset
             $newSniffs      = array_diff($expandedSniffs, $includedSniffs);
             $includedSniffs = array_merge($includedSniffs, $expandedSniffs);
 
-            $parts = explode('.', $rule['ref']);
+            $parts = explode('.', (string) $rule['ref']);
             if (count($parts) === 4
                 && $parts[0] !== ''
                 && $parts[1] !== ''
@@ -629,7 +629,7 @@ class Ruleset
 
                     // Check if a single code is being excluded, which is a shortcut
                     // for setting the severity of the message to 0.
-                    $parts = explode('.', $exclude['name']);
+                    $parts = explode('.', (string) $exclude['name']);
                     if (count($parts) === 4) {
                         $this->ruleset[(string) $exclude['name']]['severity'] = 0;
                         if (PHP_CODESNIFFER_VERBOSITY > 1) {

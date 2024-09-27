@@ -1323,7 +1323,7 @@ class Config
         }
 
         $file = Common::realpath($path);
-        if (file_exists($file) === false) {
+        if ($file === false || file_exists($file) === false) {
             if ($this->dieOnUnknownArg === false) {
                 return;
             }

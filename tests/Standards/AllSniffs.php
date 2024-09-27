@@ -81,7 +81,7 @@ class AllSniffs
                 }
 
                 // Tests must have the extension 'php'.
-                $parts = explode('.', $file);
+                $parts = explode('.', $file->getFilename());
                 $ext   = array_pop($parts);
                 if ($ext !== 'php') {
                     continue;

@@ -42,6 +42,8 @@ class AllTests
 
         $testFileIterator = new FileList(__DIR__, '', '`Test\.php$`Di');
         foreach ($testFileIterator->fileIterator as $file) {
+            $file = (string) $file;
+
             if (strpos($file, 'AbstractMethodUnitTest.php') !== false) {
                 continue;
             }

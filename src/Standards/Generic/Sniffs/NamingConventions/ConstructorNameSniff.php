@@ -95,10 +95,11 @@ class ConstructorNameSniff extends AbstractScopeSniff
             return;
         }
 
-        $parentClassName = strtolower($phpcsFile->findExtendedClassName($currScope));
+        $parentClassName = $phpcsFile->findExtendedClassName($currScope);
         if ($parentClassName === false) {
             return;
         }
+        $parentClassName = strtolower($parentClassName);
 
         $endFunctionIndex = $tokens[$stackPtr]['scope_closer'];
         $startIndex       = $stackPtr;
