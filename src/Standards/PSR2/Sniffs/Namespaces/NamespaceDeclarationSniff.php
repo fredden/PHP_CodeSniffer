@@ -60,7 +60,7 @@ class NamespaceDeclarationSniff implements Sniff
         // The $i var now points to the first token on the line after the
         // namespace declaration, which must be a blank line.
         $next = $phpcsFile->findNext(T_WHITESPACE, $i, $phpcsFile->numTokens, true);
-        if ($next === false) {
+        if ($next === false || $next === (count($tokens) - 1)) {
             return;
         }
 
@@ -73,8 +73,18 @@ class NamespaceDeclarationSniff implements Sniff
             $diff = 0;
         }
 
+        if ($diff === 0 && $tokens[$i]['code'] === T_INLINE_HTML && $tokens[$i]['content'] === "\n") {
+            return;
+        }
+
         $error = 'There must be one blank line after the namespace declaration';
-        $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'BlankLineAfter');
+
+        if ($tokens[$i]['code'] === T_INLINE_HTML) {
+            $phpcsFile->addError($error, $stackPtr, 'BlankLineAfterHTML');
+            return;
+        }
+
+        $fix = $phpcsFile->addFixableError($error, $stackPtr, 'BlankLineAfter');
 
         if ($fix === true) {
             if ($diff === 0) {
