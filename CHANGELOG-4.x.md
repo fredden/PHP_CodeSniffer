@@ -2,6 +2,44 @@
 
 The file documents changes to the PHP_CodeSniffer project for the 4.x series of releases.
 
+## [4.0.1] - 2025-11-10
+
+This release includes all improvements and bugfixes from PHP_CodeSniffer [3.13.5].
+
+### Added
+- Runtime support for PHP 8.5. All known PHP 8.5 deprecation notices have been fixed.
+    - Syntax support for new PHP 8.5 features will follow in a future release.
+    - If you find any PHP 8.5 deprecation notices which were missed, please report them.
+
+### Changed
+- The Squiz.ControlStructures.SwitchDeclaration sniff will now flag a PHP close tag as a "wrong opener" and will auto-fix this by inserting a colon. [#1316]
+- Various housekeeping, including improvements to the tests and documentation.
+
+### Fixed
+- 4.x regression [#1277]: bring back whitespace tolerance in `phpcs:ignore` comma-separated rule reference lists.
+    - Note: this bug did not affect `phpcs:disable`/`phpcs:enable` ignore annotations.
+- Fixed bug [#968]: Generic.WhiteSpace.ScopeIndent was reporting false positives - and making incorrect fixes - for lines following a line containing an arrow function.
+    - Thanks to [Soichi Sato][@Soh1121] for the patch.
+- Fixed bug [#1216]: Tokenizer/PHP: added more defensive coding to prevent PHP 8.5 "Using null as an array offset" deprecation notices.
+    - Thanks to [Andrew Lyons][@andrewnicols] for the patch.
+- Fixed bug [#1279]: Tokenizer/PHP: on PHP < 8.0, an unclosed attribute (parse error) could end up removing some tokens from the token stream.
+    - This could lead to false positives and false negative from sniffs, but could also lead to incorrect fixes being made mangling the file under scan.
+- Fixed bug [#1315]: Squiz.ControlStructures.SwitchDeclaration: a number of the fixers would get into fixer conflicts with each other if the code under scan contained multiple statements on a line within a `switch`.
+    - The sniff will now forbid - and auto-fix - multiple statements on one line for `case`/`default` and "case breaking" statements.
+- Fixed bug [#1316]: Tokenizer/PHP: a PHP close tag after a `switch` case condition or after a `default` keyword, was not regarded as a "scope_opener" for the `case`/`default` body.
+- Fixed bug [#1316]: PSR2.ControlStructures.SwitchDeclaration: the `WrongOpener` error is now also auto-fixable if the wrong opener is a PHP close tag.
+- Fixed bug [#1316]: Squiz.PHP.NonExecutableCode would throw false positives when code within a switch control structure would move in and out of PHP.
+
+[3.13.5]: https://github.com/PHPCSStandards/PHP_CodeSniffer/blob/4.x/CHANGELOG-3.x.md#3135---2025-11-04
+
+[#968]:  https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/968
+[#1216]: https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/1216
+[#1277]: https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/1277
+[#1279]: https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/1279
+[#1315]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/1315
+[#1316]: https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/1316
+
+
 ## [4.0.0] - 2025-09-16
 
 This release contains breaking changes.
@@ -392,6 +430,7 @@ Special thanks go out to [Dan Wallis][@fredden] and [Rodrigo Primo][@rodrigoprim
 === Link list for release links ====
 -->
 
+[4.0.1]:      https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/4.0.0...4.0.1
 [4.0.0]:      https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/4.0.0RC1...4.0.0
 [4.0.0RC1]:   https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/4.0.0beta1...4.0.0RC1
 [4.0.0beta1]: https://github.com/PHPCSStandards/PHP_CodeSniffer/compare/3.13.0...4.0.0beta1
@@ -401,8 +440,10 @@ Special thanks go out to [Dan Wallis][@fredden] and [Rodrigo Primo][@rodrigoprim
 === Link list for contributor profiles ====
 -->
 
+[@andrewnicols]:        https://github.com/andrewnicols
 [@anomiex]:             https://github.com/anomiex
 [@fredden]:             https://github.com/fredden
 [@gsherwood]:           https://github.com/gsherwood
 [@jrfnl]:               https://github.com/jrfnl
 [@rodrigoprimo]:        https://github.com/rodrigoprimo
+[@Soh1121]:             https://github.com/Soh1121
