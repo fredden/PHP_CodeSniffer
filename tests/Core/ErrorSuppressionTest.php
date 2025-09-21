@@ -746,59 +746,65 @@ EOD;
     {
         return [
             // Single sniff.
-            'disable: single sniff'                        => [
+            'disable: single sniff'                                                       => [
                 'before'         => '// phpcs:disable Generic.Commenting.Todo',
                 'expectedErrors' => 1,
             ],
-            'disable: single sniff with reason'            => [
+            'disable: single sniff with reason'                                           => [
                 'before'         => '# phpcs:disable Generic.Commenting.Todo -- for reasons',
                 'expectedErrors' => 1,
             ],
-            'disable: single sniff, docblock'              => [
+            'disable: single sniff, docblock'                                             => [
                 'before'         => "/**\n * phpcs:disable Generic.Commenting.Todo\n */ ",
                 'expectedErrors' => 1,
             ],
-            'disable: single sniff, docblock, with @'      => [
+            'disable: single sniff, docblock, with @'                                     => [
                 'before'         => "/**\n * @phpcs:disable Generic.Commenting.Todo\n */ ",
                 'expectedErrors' => 1,
             ],
 
             // Multiple sniffs.
-            'disable: multiple sniffs in one comment'      => [
+            'disable: multiple sniffs in one comment'                                     => [
                 'before' => '// phpcs:disable Generic.Commenting.Todo,Generic.PHP.LowerCaseConstant',
             ],
-            'disable: multiple sniff in multiple comments' => [
+            'disable: multiple sniffs in one comment with superfluous space after comma'  => [
+                'before' => '// phpcs:disable Generic.Commenting.Todo, Generic.PHP.LowerCaseConstant',
+            ],
+            'disable: multiple sniff in multiple comments'                                => [
                 'before' => "// phpcs:disable Generic.Commenting.Todo\n// phpcs:disable Generic.PHP.LowerCaseConstant",
             ],
 
             // Selectiveness variations.
-            'disable: complete category'                   => [
+            'disable: complete category'                                                  => [
                 'before'         => '// phpcs:disable Generic.Commenting',
                 'expectedErrors' => 1,
             ],
-            'disable: whole standard'                      => [
+            'disable: whole standard'                                                     => [
                 'before' => '// phpcs:disable Generic',
             ],
-            'disable: single errorcode'                    => [
+            'disable: single errorcode'                                                   => [
                 'before'         => '# @phpcs:disable Generic.Commenting.Todo.TaskFound',
                 'expectedErrors' => 1,
             ],
-            'disable: single errorcode and a category'     => [
+            'disable: single errorcode and a category'                                    => [
                 'before' => '// phpcs:disable Generic.PHP.LowerCaseConstant.Found,Generic.Commenting',
+            ],
+            'disable: single errorcode and a category with superfluous space after comma' => [
+                'before' => '// phpcs:disable Generic.PHP.LowerCaseConstant.Found, Generic.Commenting',
             ],
 
             // Wrong category/sniff/code.
-            'disable: wrong error code and category'       => [
+            'disable: wrong error code and category'                                      => [
                 'before'           => "/**\n * phpcs:disable Generic.PHP.LowerCaseConstant.Upper,Generic.Comments\n */ ",
                 'expectedErrors'   => 1,
                 'expectedWarnings' => 1,
             ],
-            'disable: wrong category, docblock'            => [
+            'disable: wrong category, docblock'                                           => [
                 'before'           => "/**\n * phpcs:disable Generic.Files\n */ ",
                 'expectedErrors'   => 1,
                 'expectedWarnings' => 1,
             ],
-            'disable: wrong category, docblock, with @'    => [
+            'disable: wrong category, docblock, with @'                                   => [
                 'before'           => "/**\n * @phpcs:disable Generic.Files\n */ ",
                 'expectedErrors'   => 1,
                 'expectedWarnings' => 1,
@@ -871,6 +877,17 @@ EOD;
                     $var = FALSE;
                     //TODO: write some code
                     // phpcs:enable Generic.Commenting.Todo,Generic.PHP.LowerCaseConstant
+                    //TODO: write some code
+                    $var = FALSE;',
+                'expectedErrors'   => 1,
+                'expectedWarnings' => 1,
+            ],
+            'disable/enable: multiple sniffs with superfluous space after comma'                                            => [
+                'code'             => '
+                    // phpcs:disable Generic.Commenting.Todo, Generic.PHP.LowerCaseConstant
+                    $var = FALSE;
+                    //TODO: write some code
+                    // phpcs:enable Generic.Commenting.Todo, Generic.PHP.LowerCaseConstant
                     //TODO: write some code
                     $var = FALSE;',
                 'expectedErrors'   => 1,
@@ -1028,6 +1045,54 @@ EOD;
                 'expectedErrors'   => 0,
                 'expectedWarnings' => 0,
             ],
+            'disable: two sniffs in one go; enable: both sniffs; ignore: one of those sniffs'                               => [
+                'code'             => '
+                    // phpcs:disable Generic.PHP.LowerCaseConstant,Generic.Commenting.Todo
+                    //TODO: write some code
+                    $var = TRUE;
+                    // phpcs:enable Generic.Commenting.Todo,Generic.PHP.LowerCaseConstant
+
+                    $var = FALSE; // phpcs:ignore Generic.PHP.LowerCaseConstant
+                    ',
+                'expectedErrors'   => 0,
+                'expectedWarnings' => 0,
+            ],
+            'disable: two sniffs in one go; enable: one sniff; ignore: enabled sniff'                                       => [
+                'code'             => '
+                    // phpcs:disable Generic.PHP.LowerCaseConstant, Generic.Commenting.Todo
+                    //TODO: write some code
+                    $var = TRUE;
+                    // phpcs:enable Generic.PHP.LowerCaseConstant
+
+                    $var = FALSE; // phpcs:ignore Generic.PHP.LowerCaseConstant
+                    ',
+                'expectedErrors'   => 0,
+                'expectedWarnings' => 0,
+            ],
+            'disable: two sniffs in one go; enable: one sniff; ignore: category'                                            => [
+                'code'             => '
+                    // phpcs:disable Generic.PHP.LowerCaseConstant,Generic.Commenting.Todo
+                    //TODO: write some code
+                    $var = TRUE;
+                    // phpcs:enable Generic.PHP.LowerCaseConstant
+
+                    $var = FALSE; // phpcs:ignore Generic.PHP
+                    ',
+                'expectedErrors'   => 0,
+                'expectedWarnings' => 0,
+            ],
+            'disable: two sniffs in one go; enable: category; ignore: sniff in category'                                    => [
+                'code'             => '
+                    // phpcs:disable Generic.PHP.LowerCaseConstant, Generic.Commenting.Todo
+                    //TODO: write some code
+                    $var = TRUE;
+                    // phpcs:enable Generic.PHP
+
+                    $var = FALSE; // phpcs:ignore Generic.PHP.LowerCaseConstant
+                    ',
+                'expectedErrors'   => 0,
+                'expectedWarnings' => 0,
+            ],
             'disable: standard; enable: category in standard; disable: sniff in category'                                   => [
                 'code'             => '
                     // phpcs:disable Generic
@@ -1106,34 +1171,49 @@ EOD;
     public static function dataIgnoreSelected()
     {
         return [
-            'no suppression'                              => [
+            'no suppression'                                                          => [
                 'before'           => '',
                 'expectedErrors'   => 2,
                 'expectedWarnings' => 2,
             ],
 
             // With suppression.
-            'ignore: single sniff'                        => [
+            'ignore: single sniff'                                                    => [
                 'before'           => '// phpcs:ignore Generic.Commenting.Todo',
                 'expectedErrors'   => 2,
                 'expectedWarnings' => 1,
             ],
-            'ignore: multiple sniffs'                     => [
+            'ignore: multiple sniffs'                                                 => [
                 'before'           => '// phpcs:ignore Generic.Commenting.Todo,Generic.PHP.LowerCaseConstant',
                 'expectedErrors'   => 1,
                 'expectedWarnings' => 1,
             ],
-            'disable: single sniff; ignore: single sniff' => [
+            'ignore: multiple sniffs with superfluous space after comma'              => [
+                'before'           => '// phpcs:ignore Generic.Commenting.Todo  , Generic.PHP.LowerCaseConstant',
+                'expectedErrors'   => 1,
+                'expectedWarnings' => 1,
+            ],
+            'ignore: one sniff, one category with superfluous space after comma'      => [
+                'before'           => '// phpcs:ignore Generic.Commenting.Todo, Generic.PHP',
+                'expectedErrors'   => 1,
+                'expectedWarnings' => 1,
+            ],
+            'ignore: one category, one error code with superfluous space after comma' => [
+                'before'           => '// phpcs:ignore Generic.Commenting,  Generic.PHP.LowerCaseConstant.Found',
+                'expectedErrors'   => 1,
+                'expectedWarnings' => 1,
+            ],
+            'disable: single sniff; ignore: single sniff'                             => [
                 'before'           => "// phpcs:disable Generic.Commenting.Todo\n// phpcs:ignore Generic.PHP.LowerCaseConstant",
                 'expectedErrors'   => 1,
                 'expectedWarnings' => 0,
             ],
-            'ignore: category of sniffs'                  => [
+            'ignore: category of sniffs'                                              => [
                 'before'           => '# phpcs:ignore Generic.Commenting',
                 'expectedErrors'   => 2,
                 'expectedWarnings' => 1,
             ],
-            'ignore: whole standard'                      => [
+            'ignore: whole standard'                                                  => [
                 'before'           => '// phpcs:ignore Generic',
                 'expectedErrors'   => 1,
                 'expectedWarnings' => 1,
@@ -1226,6 +1306,16 @@ EOD;
                     $var = FALSE; //TODO: write some code
                     $var = FALSE; //TODO: write some code',
                 'expectedErrors'   => 2,
+                'expectedWarnings' => 1,
+            ],
+            'ignore: multi sniff, line above and trailing - with comment and superfluous whitespace'       => [
+                'code'             => '
+                    // phpcs:ignore Generic.Commenting.Todo ,   Generic.PHP.LowerCaseConstant.Found   --  Because reasons
+                    $var = FALSE; //TODO: write some code
+                    $var = FALSE; // phpcs:ignore Generic.Commenting.Todo , Generic.PHP.LowerCaseConstant.Found --Because reasons
+                    //TODO: write some code
+                    $var = FALSE;',
+                'expectedErrors'   => 1,
                 'expectedWarnings' => 1,
             ],
             'enable before disable, sniff not in standard'                                                 => [
