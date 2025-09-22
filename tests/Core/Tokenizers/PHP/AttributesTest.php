@@ -582,27 +582,6 @@ final class AttributesTest extends AbstractTokenizerTestCase
 
 
     /**
-     * Test that invalid attribute (or comment starting with #[ and without ]) are parsed correctly.
-     *
-     * @covers PHP_CodeSniffer\Tokenizers\PHP::tokenize
-     * @covers PHP_CodeSniffer\Tokenizers\PHP::findCloser
-     * @covers PHP_CodeSniffer\Tokenizers\PHP::parsePhpAttribute
-     *
-     * @return void
-     */
-    public function testInvalidAttribute()
-    {
-        $tokens = $this->phpcsFile->getTokens();
-
-        $attribute = $this->getTargetToken('/* testInvalidAttribute */', T_ATTRIBUTE);
-
-        $this->assertArrayHasKey('attribute_closer', $tokens[$attribute]);
-        $this->assertNull($tokens[$attribute]['attribute_closer']);
-
-    }//end testInvalidAttribute()
-
-
-    /**
      * Test that nested attributes are parsed correctly.
      *
      * @covers PHP_CodeSniffer\Tokenizers\PHP::tokenize

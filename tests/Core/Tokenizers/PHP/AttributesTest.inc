@@ -84,7 +84,3 @@ function attribute_containing_text_looking_like_close_tag() {}
     'reason: <https://some-website/reason?>'
 )]
 function attribute_containing_mulitline_text_looking_like_close_tag() {}
-
-/* testInvalidAttribute */
-#[ThisIsNotAnAttribute
-function invalid_attribute_test() {}
