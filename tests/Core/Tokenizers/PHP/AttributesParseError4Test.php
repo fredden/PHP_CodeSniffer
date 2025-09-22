@@ -2,10 +2,7 @@
 /**
  * Tests the support of PHP 8 attributes
  *
- * @author    Alessandro Chitolina <alekitto@gmail.com>
- * @author    Juliette Reinders Folmer <phpcs_nospam@adviesenzo.nl>
- * @copyright 2019-2023 Squiz Pty Ltd (ABN 77 084 670 600)
- * @copyright 2023 PHPCSStandards and contributors
+ * @copyright 2025 PHPCSStandards and contributors
  * @license   https://github.com/PHPCSStandards/PHP_CodeSniffer/blob/HEAD/licence.txt BSD Licence
  */
 
@@ -13,7 +10,7 @@ namespace PHP_CodeSniffer\Tests\Core\Tokenizers\PHP;
 
 use PHP_CodeSniffer\Tests\Core\Tokenizers\AbstractTokenizerTestCase;
 
-final class AttributesParseError1Test extends AbstractTokenizerTestCase
+final class AttributesParseError4Test extends AbstractTokenizerTestCase
 {
 
 
@@ -31,18 +28,39 @@ final class AttributesParseError1Test extends AbstractTokenizerTestCase
     {
         $tokens = $this->phpcsFile->getTokens();
 
-        $attribute = $this->getTargetToken('/* testInvalidAttribute */', T_ATTRIBUTE);
+        $attribute = $this->getTargetToken('/* testLiveCoding */', T_ATTRIBUTE);
 
-        $this->assertArrayHasKey('attribute_closer', $tokens[$attribute]);
-        $this->assertNull($tokens[$attribute]['attribute_closer']);
+        $expectedTokenCodesAttribute1 = [
+            'T_ATTRIBUTE',
+            'T_STRING',
+            'T_ATTRIBUTE_END',
+            'T_WHITESPACE',
+        ];
 
-        $expectedTokenCodes = [
+        $lengthAttribute1 = count($expectedTokenCodesAttribute1);
+
+        $map = array_map(
+            function ($token) use ($attribute, $lengthAttribute1) {
+                if ($token['code'] !== T_WHITESPACE) {
+                    $this->assertArrayHasKey('attribute_closer', $token);
+                    $this->assertSame(($attribute + 2), $token['attribute_closer']);
+                }
+
+                return $token['type'];
+            },
+            array_slice($tokens, $attribute, $lengthAttribute1)
+        );
+
+        $this->assertSame($expectedTokenCodesAttribute1, $map);
+
+        $expectedTokenCodesAttribute2 = [
             'T_ATTRIBUTE',
             'T_STRING',
             'T_WHITESPACE',
             'T_FUNCTION',
         ];
-        $length = count($expectedTokenCodes);
+
+        $lengthAttribute2 = count($expectedTokenCodesAttribute2);
 
         $map = array_map(
             function ($token) {
@@ -55,10 +73,10 @@ final class AttributesParseError1Test extends AbstractTokenizerTestCase
 
                 return $token['type'];
             },
-            array_slice($tokens, $attribute, $length)
+            array_slice($tokens, ($attribute + $lengthAttribute1), $lengthAttribute2)
         );
 
-        $this->assertSame($expectedTokenCodes, $map);
+        $this->assertSame($expectedTokenCodesAttribute2, $map);
 
     }//end testInvalidAttribute()
 
