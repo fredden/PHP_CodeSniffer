@@ -54,7 +54,7 @@ jobs:
       #   code conditions.
       matrix:
         os: ['ubuntu-latest', 'windows-latest']
-        php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
+        php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', '8.6']
         custom_ini: [false]
 
         exclude:
@@ -76,7 +76,7 @@ jobs:
           - php: '5.5'
             os: 'windows-latest'
             skip_tests: true
-          - php: '8.4'
+          - php: '8.5'
             skip_tests: true
 
           # The default libxml library on Ubuntu images is a little out of date.
@@ -107,7 +107,7 @@ jobs:
     # yamllint disable-line rule:line-length
     name: "PHP: ${{ matrix.php }} ${{ matrix.custom_ini && ' with custom ini settings' || '' }}${{ matrix.libxml_minor && format( ' with libxml {0}', matrix.libxml_minor ) || '' }} (${{ matrix.os == 'ubuntu-latest' && 'Linux' || 'Win'  }})"
 
-    continue-on-error: ${{ matrix.php == '8.5' }}
+    continue-on-error: ${{ matrix.php == '8.6' }}
 
     steps:
       - name: Prepare git to leave line endings alone
@@ -226,7 +226,7 @@ jobs:
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520" # 3.1.1
         with:
-          composer-options: ${{ matrix.php == '8.5' && '--ignore-platform-req=php+' || '' }}
+          composer-options: ${{ matrix.php == '8.6' && '--ignore-platform-req=php+' || '' }}
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: 'PHPCS: set the path to PHP'
@@ -237,14 +237,14 @@ jobs:
         run: php "vendor/bin/phpunit" tests/AllTests.php --no-coverage
 
       # Do one test run against the complete test suite in CBF mode to ensure all tests can run in CBF mode.
-      - name: 'PHPUnit: run the full test suite without code coverage in CBF mode (PHP 8.3 only)'
-        if: ${{ matrix.php == '8.3' }}
+      - name: 'PHPUnit: run the full test suite without code coverage in CBF mode (PHP 8.4 only)'
+        if: ${{ matrix.php == '8.4' }}
         run: php "vendor/bin/phpunit" tests/AllTests.php --exclude-group nothing --no-coverage
         env:
           PHP_CODESNIFFER_CBF: '1'
 
       - name: 'PHPUnit: run select tests in CBF mode'
-        if: ${{ matrix.skip_tests != true && matrix.php != '8.3' }}
+        if: ${{ matrix.skip_tests != true && matrix.php != '8.4' }}
         run: php "vendor/bin/phpunit" tests/AllTests.php --group CBF --exclude-group nothing --no-coverage
         env:
           PHP_CODESNIFFER_CBF: '1'
@@ -274,7 +274,7 @@ jobs:
     strategy:
       matrix:
         os: ['ubuntu-latest', 'windows-latest']
-        php: ['8.4']
+        php: ['8.5']
         custom_ini: [false]
 
         include:
