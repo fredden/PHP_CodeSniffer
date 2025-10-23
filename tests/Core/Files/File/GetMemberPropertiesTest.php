@@ -1667,12 +1667,12 @@ final class GetMemberPropertiesTest extends AbstractMethodTestCase
                     'nullable_type'   => false,
                 ],
             ],
-            'php8.4-illegal-asym-public-protected-set-static'              => [
-                'identifier' => '/* testPHP84IllegalAsymPublicProtectedSetStaticProperty */',
+            'php8.5-asym-private-set-static'                               => [
+                'identifier' => '/* testPHP85AsymPrivateSetStaticProperty */',
                 'expected'   => [
                     'scope'           => 'public',
-                    'scope_specified' => true,
-                    'set_scope'       => 'protected',
+                    'scope_specified' => false,
+                    'set_scope'       => 'private',
                     'is_static'       => true,
                     'is_readonly'     => false,
                     'is_final'        => false,
@@ -1683,6 +1683,39 @@ final class GetMemberPropertiesTest extends AbstractMethodTestCase
                     'nullable_type'   => false,
                 ],
             ],
+            'php8.5-asym-final-public-protected-set-static'                => [
+                'identifier' => '/* testPHP85AsymFinalPublicProtectedSetStaticProperty */',
+                'expected'   => [
+                    'scope'           => 'public',
+                    'scope_specified' => true,
+                    'set_scope'       => 'protected',
+                    'is_static'       => true,
+                    'is_readonly'     => false,
+                    'is_final'        => true,
+                    'is_abstract'     => false,
+                    'type'            => 'Union|Type',
+                    'type_token'      => -4,
+                    'type_end_token'  => -2,
+                    'nullable_type'   => false,
+                ],
+            ],
+            'php8.5-asym-static-public-set'                                => [
+                'identifier' => '/* testPHP85AsymPublicSetStaticProperty */',
+                'expected'   => [
+                    'scope'           => 'public',
+                    'scope_specified' => false,
+                    'set_scope'       => 'public',
+                    'is_static'       => true,
+                    'is_readonly'     => false,
+                    'is_final'        => false,
+                    'is_abstract'     => false,
+                    'type'            => '?array',
+                    'type_token'      => -2,
+                    'type_end_token'  => -2,
+                    'nullable_type'   => true,
+                ],
+            ],
+
             'php8.4-abstract-public-property'                              => [
                 'identifier' => '/* testPHP84AbstractPublicTypedProp */',
                 'expected'   => [
