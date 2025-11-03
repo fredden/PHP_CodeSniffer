@@ -6,9 +6,8 @@ function tear_down() {
 
 function test_phpcs_out_of_memory_error_handling() {
   OUTPUT="$(bin/phpcs -d memory_limit=4M --standard=tests/EndToEnd/Fixtures/endtoend.xml.dist tests/EndToEnd/Fixtures/)"
-  # Exit code can't currently be tested as it looks like it may be 255 or 139 depending on the PHP version.
-  # Related feature request upstream: https://github.com/TypedDevs/bashunit/issues/505
-  # assert_exit_code 255
+  # Exit code may be 255 or 139 depending on the PHP version, but the exact code is not our concern, just that it's non-zero.
+  assert_unsuccessful_code
 
   assert_contains "The PHP_CodeSniffer \"phpcs\" command ran out of memory." "$OUTPUT"
   assert_contains "Either raise the \"memory_limit\" of PHP in the php.ini file or raise the memory limit at runtime" "$OUTPUT"
@@ -17,9 +16,8 @@ function test_phpcs_out_of_memory_error_handling() {
 
 function test_phpcbf_out_of_memory_error_handling() {
   OUTPUT="$(bin/phpcbf -d memory_limit=4M --standard=tests/EndToEnd/Fixtures/endtoend.xml.dist tests/EndToEnd/Fixtures/ --suffix=.fixed)"
-  # Exit code can't currently be tested as it looks like it may be 255 or 139 depending on the PHP version.
-  # Related feature request upstream: https://github.com/TypedDevs/bashunit/issues/505
-  # assert_exit_code 255
+  # Exit code may be 255 or 139 depending on the PHP version, but the exact code is not our concern, just that it's non-zero.
+  assert_unsuccessful_code
 
   assert_contains "The PHP_CodeSniffer \"phpcbf\" command ran out of memory." "$OUTPUT"
   assert_contains "Either raise the \"memory_limit\" of PHP in the php.ini file or raise the memory limit at runtime" "$OUTPUT"
