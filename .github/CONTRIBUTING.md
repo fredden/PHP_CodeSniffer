@@ -399,7 +399,7 @@ To run the tests specific to the use of `PHP_CODESNIFFER_CBF === true`:
 
 ### Writing End-to-End Tests
 
-Bash-based end-to-end tests can be written using the [Bashunit](https://bashunit.typeddevs.com/) test tooling.
+Bash-based end-to-end tests can be written using the [Bashunit](https://bashunit.typeddevs.com/) test tooling using version 0.26.0 or higher.
 
 To install bashunit, follow the [installation guide](https://bashunit.typeddevs.com/installation).
 
