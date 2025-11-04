@@ -22,6 +22,7 @@ _Nothing yet._
     - Thanks to [Andrew Lyons][@andrewnicols] for the patch.
 - Fixed bug [#1279]: Tokenizer/PHP: on PHP < 8.0, an unclosed attribute (parse error) could end up removing some tokens from the token stream.
     - This could lead to false positives and false negative from sniffs, but could also lead to incorrect fixes being made mangling the file under scan.
+    - Thanks to [Juliette Reinders Folmer](https://github.com/jrfnl) for the patch.
 
 ### Other
 - Please be aware that the `master` branch has been renamed to `3.x` and the default branch has changed to the `4.x` branch.
