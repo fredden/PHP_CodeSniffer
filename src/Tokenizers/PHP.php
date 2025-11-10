@@ -259,6 +259,7 @@ class PHP extends Tokenizer
             'start'  => [
                 T_COLON     => T_COLON,
                 T_SEMICOLON => T_SEMICOLON,
+                T_CLOSE_TAG => T_CLOSE_TAG,
             ],
             'end'    => [
                 T_BREAK    => T_BREAK,
@@ -280,6 +281,7 @@ class PHP extends Tokenizer
             'start'  => [
                 T_COLON     => T_COLON,
                 T_SEMICOLON => T_SEMICOLON,
+                T_CLOSE_TAG => T_CLOSE_TAG,
             ],
             'end'    => [
                 T_BREAK    => T_BREAK,

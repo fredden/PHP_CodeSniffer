@@ -229,3 +229,25 @@ class Foo {
     /* testMethodDeclaration */
     public function default() {}
 }
+
+// Case and default bodies can also be started with a PHP close tag, which has an implied semicolon.
+switch ($foo) {
+    /* testSwitchDefaultStartsWithColon */
+    default:
+        echo '<div>Some html</div>';
+        break;
+}
+
+switch ($foo) {
+    /* testSwitchDefaultStartsWithSemicolon */
+    default;
+        echo '<div>Some html</div>';
+        return;
+}
+
+switch ($foo):
+    /* testSwitchDefaultStartsWithPHPCloseTag */
+    default ?>
+        <div>Some html</div>
+        <?php goto FOO;
+endswitch;

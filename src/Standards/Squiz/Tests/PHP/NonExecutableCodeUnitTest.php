@@ -115,6 +115,9 @@ final class NonExecutableCodeUnitTest extends AbstractSniffTestCase
                     45 => 1,
                     54 => 1,
                     62 => 1,
+                    83 => 1,
+                    86 => 1,
+                    89 => 1,
                 ];
             default:
                 return [];

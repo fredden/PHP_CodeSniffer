@@ -159,8 +159,8 @@ final class RecurseScopeMapDefaultKeywordConditionsTest extends AbstractTokenize
 
         $token      = $this->getTargetToken($testMarker, [T_MATCH_DEFAULT, T_DEFAULT, T_STRING], $testContent);
         $tokenArray = $tokens[$token];
-        $expectedScopeOpener = $this->getTargetToken($openerMarker, [T_COLON, T_OPEN_CURLY_BRACKET, T_SEMICOLON]);
-        $expectedScopeCloser = $this->getTargetToken($closerMarker, [T_BREAK, T_CLOSE_CURLY_BRACKET, T_RETURN, T_ENDSWITCH]);
+        $expectedScopeOpener = $this->getTargetToken($openerMarker, [T_COLON, T_OPEN_CURLY_BRACKET, T_SEMICOLON, T_CLOSE_TAG]);
+        $expectedScopeCloser = $this->getTargetToken($closerMarker, [T_BREAK, T_CLOSE_CURLY_BRACKET, T_RETURN, T_GOTO, T_ENDSWITCH]);
 
         // Make sure we're looking at the right token.
         $this->assertSame(
@@ -337,6 +337,22 @@ final class RecurseScopeMapDefaultKeywordConditionsTest extends AbstractTokenize
                 'testMarker'   => '/* testSwitchDefaultNestedIfWithAndWithoutBraces */',
                 'openerMarker' => '/* testSwitchDefaultNestedIfWithAndWithoutBraces */',
                 'closerMarker' => '/* testSwitchDefaultNestedIfWithAndWithoutBracesScopeCloser */',
+            ],
+
+            'switch_default_starts_with_colon'                          => [
+                'testMarker'   => '/* testSwitchDefaultStartsWithColon */',
+                'openerMarker' => '/* testSwitchDefaultStartsWithColon */',
+                'closerMarker' => '/* testSwitchDefaultStartsWithColon */',
+            ],
+            'switch_default_starts_with_semicolon'                      => [
+                'testMarker'   => '/* testSwitchDefaultStartsWithSemicolon */',
+                'openerMarker' => '/* testSwitchDefaultStartsWithSemicolon */',
+                'closerMarker' => '/* testSwitchDefaultStartsWithSemicolon */',
+            ],
+            'switch_default_starts_with_PHP_close_tag'                  => [
+                'testMarker'   => '/* testSwitchDefaultStartsWithPHPCloseTag */',
+                'openerMarker' => '/* testSwitchDefaultStartsWithPHPCloseTag */',
+                'closerMarker' => '/* testSwitchDefaultStartsWithPHPCloseTag */',
             ],
         ];
     }

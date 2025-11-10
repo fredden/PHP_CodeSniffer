@@ -58,10 +58,22 @@ switch (true) {
     case CONSTANT:
     /* testCaseWithConstantAndIdenticalIsNotEnumCase */
     case CONSTANT === 1:
-    /* testCaseWithAssigmentToConstantIsNotEnumCase */
-    case CONSTANT = 1:
+    /* testCaseWithAssigmentIsNotEnumCase */
+    case $var = 1:
     /* testIsNotEnumCaseIsCaseInsensitive */
     cAsE CONSTANT:
+    /* testIsNotEnumCaseWithCurlies */
+    case CONSTANT: {
+        break;
+    }
+    /* testIsNotEnumCaseWithSemicolonAndCurlies */
+    case CONSTANT ; {
+        break;
+    }
+    /* testIsNotEnumCaseWithCloseTag */
+    case CONSTANT?>
+        <div>something</div>
+    <?php
 }
 
 switch ($x) {

@@ -141,6 +141,19 @@ class SwitchDeclarationSniff implements Sniff
             }
 
             $opener = $tokens[$nextCase]['scope_opener'];
+
+            if ($tokens[$opener]['code'] === T_CLOSE_TAG) {
+                $error = 'There should be a colon before the PHP close tag to end the %s statement';
+                $code  = 'WrongOpener' . $type;
+                $data  = [strtoupper($type)];
+
+                $fix = $phpcsFile->addFixableError($error, $nextCase, $code, $data);
+                if ($fix === true) {
+                    $prevNonEmpty = $phpcsFile->findPrevious(T_WHITESPACE, ($opener - 1), null, true);
+                    $phpcsFile->fixer->addContent($prevNonEmpty, ':');
+                }
+            }
+
             if ($tokens[($opener - 1)]['type'] === 'T_WHITESPACE') {
                 $error = 'There must be no space before the colon in a ' . strtoupper($type) . ' statement';
                 $fix   = $phpcsFile->addFixableError($error, $nextCase, 'SpaceBeforeColon' . $type);

@@ -213,6 +213,27 @@ final class RecurseScopeMapCaseKeywordConditionsTest extends AbstractTokenizerTe
                     'scope_closer' => T_BREAK,
                 ],
             ],
+            'switch case, body starts with colon'                               => [
+                'testMarker'     => '/* testSwitchCaseStartsWithColon */',
+                'expectedTokens' => [
+                    'scope_opener' => T_COLON,
+                    'scope_closer' => T_BREAK,
+                ],
+            ],
+            'switch case, body starts with semicolon'                           => [
+                'testMarker'     => '/* testSwitchCaseStartsWithSemicolon */',
+                'expectedTokens' => [
+                    'scope_opener' => T_SEMICOLON,
+                    'scope_closer' => T_RETURN,
+                ],
+            ],
+            'switch case, body starts with PHP close tag'                       => [
+                'testMarker'     => '/* testSwitchCaseStartsWithPHPCloseTag */',
+                'expectedTokens' => [
+                    'scope_opener' => T_CLOSE_TAG,
+                    'scope_closer' => T_GOTO,
+                ],
+            ],
         ];
     }
 

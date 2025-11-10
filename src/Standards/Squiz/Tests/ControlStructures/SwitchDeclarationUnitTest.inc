@@ -380,3 +380,19 @@ switch ($condition) {
     break;
 
 }
+
+// Verify that case/default statements with a PHP close tag as scope opener are handled correctly by the sniff.
+switch ($foo):
+    case "foo"?>
+        <div>Some html</div>
+        <?php break; ?>
+    <?php case "bar" ; ?>
+        <div>Some html</div>
+        <?php return; ?>
+    <?php default ?>
+        <div>Some html</div>
+    <?php goto FOO;
+    default ; ?>
+        <div>Some html</div>
+            <?php throw new Exception;
+endswitch;
