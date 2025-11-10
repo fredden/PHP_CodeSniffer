@@ -66,6 +66,7 @@ final class CyclomaticComplexityUnitTest extends AbstractSniffTestCase
                     381 => 1,
                     417 => 1,
                     445 => 1,
+                    462 => 1,
                 ];
             default:
                 return [];

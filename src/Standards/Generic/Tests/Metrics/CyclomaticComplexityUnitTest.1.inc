@@ -458,3 +458,32 @@ abstract class AbstractClass {
 interface MyInterface {
     public function sniffShouldIgnoreInterfaceMethods();
 }
+
+function complexityElevenWithSwitchCaseCreativeScopeOpeners()
+{
+    switch ($condition) {
+        case 'colon':
+            break;
+        case 'semicolon';
+            return;
+        case 'colon with curlies': {
+            return;
+        }
+        case 'semicolon with curlies'; {
+            return;
+        }
+        case 'PHP close tag' ?>
+            <?php return ?>
+        <?php case 'PHP close tag with semicolon'; ?>
+            <?php return ?>
+        <?php case 'PHP close tag 2' ?>
+            <?php goto LABEL ?>
+        <?php case 'PHP close tag with semicolon'; ?>
+            <?php exit ?>
+        <?php case 'PHP close tag 3' ?>
+            <?php return ?>
+        <?php default ?>
+            <?php break ?>
+        <?php
+    }
+}
