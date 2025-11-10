@@ -132,19 +132,28 @@ final class DefaultKeywordTest extends AbstractTokenizerTestCase
     public static function dataSwitchDefault()
     {
         return [
-            'simple_switch_default'                  => [
+            'simple_switch_default'                            => [
                 'testMarker' => '/* testSimpleSwitchDefault */',
             ],
-            'simple_switch_default_with_curlies'     => [
+            'simple_switch_default_with_curlies'               => [
                 'testMarker' => '/* testSimpleSwitchDefaultWithCurlies */',
             ],
-            'switch_default_toplevel'                => [
+            'simple_switch_default_with_semicolon'             => [
+                'testMarker' => '/* testSimpleSwitchDefaultAndSemicolon */',
+            ],
+            'simple_switch_default_with_semicolon_and_curlies' => [
+                'testMarker' => '/* testSimpleSwitchDefaultSemicolonAndCurlies */',
+            ],
+            'simple_switch_default_with_php_close_tag'         => [
+                'testMarker' => '/* testSimpleSwitchDefaultAndCloseTag */',
+            ],
+            'switch_default_toplevel'                          => [
                 'testMarker' => '/* testSwitchDefault */',
             ],
-            'switch_default_nested_in_match_case'    => [
+            'switch_default_nested_in_match_case'              => [
                 'testMarker' => '/* testSwitchDefaultNestedInMatchCase */',
             ],
-            'switch_default_nested_in_match_default' => [
+            'switch_default_nested_in_match_default'           => [
                 'testMarker' => '/* testSwitchDefaultNestedInMatchDefault */',
             ],
         ];

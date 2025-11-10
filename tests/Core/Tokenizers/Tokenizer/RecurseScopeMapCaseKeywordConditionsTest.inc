@@ -132,3 +132,19 @@ switch ($num) {
             );
         break;
 }
+
+// Case and default bodies can also be started with a PHP close tag, which has an implied semicolon.
+switch ($foo):
+    /* testSwitchCaseStartsWithColon */
+    case "foo":
+        echo '<div>Some html</div>';
+        break;
+    /* testSwitchCaseStartsWithSemicolon */
+    case "bar";
+        echo '<div>Some html</div>';
+        return;
+    /* testSwitchCaseStartsWithPHPCloseTag */
+    case "baz" ?>
+        <div>Some html</div>
+        <?php goto FOO;
+endswitch;

@@ -34,6 +34,47 @@ function switchWithDefaultAndCurlies($i) {
     }
 }
 
+function switchWithDefaultAndSemicolon($i) {
+    switch ($i) {
+        case 1;
+            return 1;
+        case 2;
+            return 2;
+        /* testSimpleSwitchDefaultAndSemicolon */
+        default;
+            return 'default';
+    }
+}
+
+function switchWithDefaultSemicolonAndCurlies($i) {
+    switch ($i) {
+        case 1; {
+            return 1;
+        }
+        case 2 ; {
+            return 2;
+        }
+        /* testSimpleSwitchDefaultSemicolonAndCurlies */
+        default; {
+            return 'default';
+        }
+    }
+}
+
+function switchWithDefaultAndCloseTag($i) {
+    switch ($i) {
+        case 1:
+            return 1;
+        case 2 ?>
+        <?php
+            return 2;
+        /* testSimpleSwitchDefaultAndCloseTag */
+        default ?>
+            <div>default</div>
+        <?php
+    }
+}
+
 function matchWithDefaultInSwitch() {
     switch ($something) {
         case 'foo':
