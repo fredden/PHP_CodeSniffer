@@ -622,3 +622,19 @@ switch ($value) {
     default ;
         echo 'Other';
 }
+
+// Verify that case/default statements with a PHP close tag as scope opener are handled correctly by the sniff.
+switch ($foo):
+    case "foo"?>
+        <div>Some html</div>
+        <?php break;
+    case "bar" ; ?>
+        <div>Some html</div>
+        <?php break;
+    default ?>
+        <div>Some html</div>
+        <?php break;
+    default ; ?>
+        <div>Some html</div>
+        <?php break;
+endswitch;
