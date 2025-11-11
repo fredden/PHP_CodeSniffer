@@ -13,114 +13,114 @@
 
 $nowdoc = <<<'EOD'
     some text
-    EOD;
+EOD;
 
 $heredoc = <<<END
     some $foo text
-    END;
+END;
 
 $heredoc = <<<"END"
     some {$foo[0]} text
-    END;
+END;
 
 $heredoc = <<<END
     {$foo?->bar}
-    END;
+END;
 
 $heredoc = <<<    "END"
     some ${beers::softdrink}
-    END;
+END;
 
 $heredoc = <<< END
     {${$object->getName()}} text
-    END;
+END;
 
 $heredoc = <<<"END"
     some {${getName()}}
-    END;
+END;
 
 $heredoc = <<<END
     ${substr('laruence', 0, 2)}
-    END;
+END;
 
 $heredoc = <<<"END"
     some {$foo['bar']->baz()()}
-    END;
+END;
 
 $heredoc = <<<END
     {$obj->values[3]->name} text
-    END;
+END;
 
 $heredoc = <<<"END"
     some ${$bar}
-    END;
+END;
 
 $heredoc = <<<END
     ${foo->bar} text
-    END;
+END;
 
 $heredoc = <<<"END"
     ${foo["${bar}"]} text
-    END;
+END;
 
 $heredoc = <<<END
     some ${foo["${bar[\'baz\']}"]}
-    END;
+END;
 
 $heredoc = <<<"END"
     ${foo->{${'a'}}} text
-    END;
+END;
 
 $heredoc = <<<END
     some {$foo->{$baz[1]}}
-    END;
+END;
 
 $heredoc = <<<END
     some text
     {${beers::$ale}}
     some text
-    END;
+END;
 
 $heredoc = <<<"END"
     $people->john's wife greeted $people->robert.
-    END;
+END;
 
 $heredoc = <<<END
     Let's make sure it also works with this: {$arr[foo][3]}
-    END;
+END;
 
 $heredoc = <<<END
     Testing ${foo["${bar
       ['baz']
     }"]} and more testing
-    END;
+END;
 
 $heredoc = <<<"END"
     Testing {${foo["${bar
       ['baz']
     }"]}} and more testing
-    END;
+END;
 
 $heredoc = <<<END
     some text
-    END;
+END;
 
 $heredoc = <<< "END"
     some text
     some \$text
     some text \\ including a backslash
-    END;
+END;
 
 $heredoc = <<<EOD
     <?php
     echo 'The below line contains escape characters and should be recognized as needing heredoc';
     echo "aa\xC3\xC3	\xC3\xB8aa";
-    EOD;
+EOD;
 
 echo <<<EOT
     This should print a capital 'A': \x41
-    EOT;
+EOT;
 
 echo <<<EOT
     Here we should have a tab and 2 'A's: \t \101 \u{41}
-    EOT;
+EOT;
