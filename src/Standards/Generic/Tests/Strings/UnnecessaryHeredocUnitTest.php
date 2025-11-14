@@ -9,6 +9,7 @@
 
 namespace PHP_CodeSniffer\Standards\Generic\Tests\Strings;
 
+use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffTestCase;
 
 /**
@@ -18,6 +19,25 @@ use PHP_CodeSniffer\Tests\Standards\AbstractSniffTestCase;
  */
 final class UnnecessaryHeredocUnitTest extends AbstractSniffTestCase
 {
+
+
+    /**
+     * Get a list of CLI values to set before the file is tested.
+     *
+     * @param string                  $testFile The name of the file being tested.
+     * @param \PHP_CodeSniffer\Config $config   The config data for the test run.
+     *
+     * @return void
+     */
+    public function setCliValues(string $testFile, Config $config)
+    {
+        if ($testFile === 'UnnecessaryHeredocUnitTest.4.inc'
+            || $testFile === 'UnnecessaryHeredocUnitTest.5.inc'
+            || $testFile === 'UnnecessaryHeredocUnitTest.6.inc'
+        ) {
+            $config->tabWidth = 4;
+        }
+    }
 
 
     /**
@@ -47,15 +67,18 @@ final class UnnecessaryHeredocUnitTest extends AbstractSniffTestCase
     public function getWarningList($testFile = '')
     {
         $warnings = [
-            100 => 1,
             104 => 1,
+            108 => 1,
         ];
 
         switch ($testFile) {
             case 'UnnecessaryHeredocUnitTest.1.inc':
+            case 'UnnecessaryHeredocUnitTest.4.inc':
+            case 'UnnecessaryHeredocUnitTest.5.inc':
                 return $warnings;
 
             case 'UnnecessaryHeredocUnitTest.2.inc':
+            case 'UnnecessaryHeredocUnitTest.6.inc':
                 if (PHP_VERSION_ID >= 70300) {
                     return $warnings;
                 }

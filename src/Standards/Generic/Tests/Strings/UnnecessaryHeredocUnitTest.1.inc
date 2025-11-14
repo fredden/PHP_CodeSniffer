@@ -1,10 +1,14 @@
 <?php
 
 /*
- * Test file 1 and 2 mirror each other, with file 1 containing non-indented cross-version compatible heredoc/nowdoc syntax,
- * while the code samples in file 2 use PHP 7.3+ flexible heredoc/nowdoc syntax.
+ * Test files 1, 2, 4, 5 and 6 mirror each other for the test cases, with slight syntax variations.
+ * - File 1 contains non-indented cross-version compatible heredoc/nowdoc syntax with a non-indented heredoc/nowdoc body.
+ * - File 2 contains PHP 7.3+ flexible heredoc/nowdoc syntax with space indented heredoc/nowdoc body and scope closer.
+ * - File 4 contains non-indented cross-version compatible heredoc/nowdoc syntax with a space indented heredoc/nowdoc body.
+ * - File 5 contains non-indented cross-version compatible heredoc/nowdoc syntax with a tab indented heredoc/nowdoc body.
+ * - File 6 contains PHP 7.3+ flexible heredoc/nowdoc syntax with a tab indented heredoc/nowdoc body and scope closer.
  *
- * These two files should be kept in sync!
+ * These files should be kept in sync!
  */
 
 $nowdoc = <<<'EOD'
