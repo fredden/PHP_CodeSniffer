@@ -32,11 +32,12 @@ final class CastSpacingUnitTest extends AbstractSniffTestCase
     public function getErrorList()
     {
         return [
-            3 => 1,
-            4 => 1,
-            5 => 1,
-            6 => 1,
-            9 => 1,
+            3  => 1,
+            4  => 1,
+            5  => 1,
+            6  => 1,
+            9  => 1,
+            11 => 1,
         ];
     }
 

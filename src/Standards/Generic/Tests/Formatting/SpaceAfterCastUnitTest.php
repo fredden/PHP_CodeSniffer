@@ -77,6 +77,8 @@ final class SpaceAfterCastUnitTest extends AbstractSniffTestCase
                     97  => 1,
                     99  => 1,
                     100 => 1,
+                    103 => 1,
+                    104 => 1,
                 ];
 
             default:

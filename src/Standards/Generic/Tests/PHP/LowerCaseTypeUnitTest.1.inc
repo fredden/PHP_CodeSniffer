@@ -142,3 +142,5 @@ class DNFTypes {
 interface PHP84HookedProperty {
     public String $readable { get; }
 }
+
+(VOID) php85();
