@@ -1123,6 +1123,58 @@ class PHP extends Tokenizer
             }
 
             /*
+                Detect PHP 8.5+ void casting and assign the casts their own token.
+
+                Mind: type cast tokens _may_ contain whitespace, but no new lines and no comments.
+            */
+
+            if (PHP_VERSION_ID < 80500
+                && $token[0] === '('
+            ) {
+                $content = $token[0];
+                $i       = ($stackPtr + 1);
+
+                if (is_array($tokens[$i]) === true
+                    && $tokens[$i][0] === T_WHITESPACE
+                    && strpos($tokens[$i][1], "\n") === false
+                    && strpos($tokens[$i][1], "\r") === false
+                ) {
+                    $content .= $tokens[$i][1];
+                    ++$i;
+                }
+
+                if (is_array($tokens[$i]) === true
+                    && $tokens[$i][0] === T_STRING
+                    && strtolower($tokens[$i][1]) === 'void'
+                ) {
+                    $content .= $tokens[$i][1];
+                    ++$i;
+
+                    if (is_array($tokens[$i]) === true
+                        && $tokens[$i][0] === T_WHITESPACE
+                        && strpos($tokens[$i][1], "\n") === false
+                        && strpos($tokens[$i][1], "\r") === false
+                    ) {
+                        $content .= $tokens[$i][1];
+                        ++$i;
+                    }
+
+                    if ($tokens[$i][0] === ')') {
+                        $content .= $tokens[$i][0];
+
+                        $finalTokens[$newStackPtr] = [
+                            'code'    => T_VOID_CAST,
+                            'type'    => 'T_VOID_CAST',
+                            'content' => $content,
+                        ];
+                        $newStackPtr++;
+                        $stackPtr = $i;
+                        continue;
+                    }
+                }
+            }
+
+            /*
                 If this is a heredoc, PHP will tokenize the whole
                 thing which causes problems when heredocs don't
                 contain real PHP code, which is almost never.

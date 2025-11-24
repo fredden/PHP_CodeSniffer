@@ -61,6 +61,7 @@ final class SpaceBeforeCastUnitTest extends AbstractSniffTestCase
             53 => 1,
             55 => 1,
             56 => 1,
+            68 => 1,
         ];
     }
 

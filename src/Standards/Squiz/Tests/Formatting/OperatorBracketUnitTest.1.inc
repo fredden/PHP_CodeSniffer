@@ -205,3 +205,6 @@ $cntPages = ceil(count($items) / parent::ON_PAGE);
 $nsRelative = namespace\doSomething($items + 10);
 $partiallyQualified = Partially\qualified($items + 10);
 $fullyQualified = \Fully\qualified($items + 10);
+
+// The below should be ignored as adding parentheses will turn this into a parse error.
+(void) CallMeOnce() + (bool) CallMeTwice();
